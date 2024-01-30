@@ -1,4 +1,6 @@
-export function playNote(noteKey, waveform, ADSR, filter, volume, actx, noteWidth) {
+// playFunction.jsx
+
+export function playNote(noteKey, waveform, ADSR, frequency,q, volume, actx, noteWidth, unisonCount) {
   const notes = {
     "c-4": 261.626,
     "d-4": 293.665,
@@ -21,20 +23,32 @@ export function playNote(noteKey, waveform, ADSR, filter, volume, actx, noteWidt
     return;
   }
 
-  const osc = actx.createOscillator();
-  osc.frequency.value = noteFrequency;
-  osc.type = waveform;
+  const osc1 = actx.createOscillator();
+  osc1.frequency.value = noteFrequency;
+  osc1.type = waveform;
+
+  const osc2 = actx.createOscillator();
+  osc2.frequency.value = noteFrequency + noteWidth;
+  osc2.type = waveform;
+
+  const osc3 = actx.createOscillator();
+  osc3.frequency.value = noteFrequency - noteWidth;
+  osc3.type = waveform;
 
   const gainNode = actx.createGain();
   gainNode.gain.value = volume;
 
-  const filterNode = actx.createBiquadFilter();
-  filterNode.type = filter.type;
-  filterNode.frequency.value = filter.frequency * 2000; // scale frequency
-  filterNode.Q.value = filter.Q * 30; // scale Q
+  const maxFilterFrequency = actx.sampleRate / 2;
+  const filter = actx.createBiquadFilter();
+  filter.type = "lowpass";
+  filter.frequency.value = frequency * maxFilterFrequency; // scale frequency
+  filter.Q.value = q * 30; // scale Q
 
-  osc.connect(filterNode);
-  filterNode.connect(gainNode);
+  
+  osc1.connect(filter);
+  osc2.connect(filter);
+  osc3.connect(filter);
+  filter.connect(gainNode);
   gainNode.connect(actx.destination);
 
   const now = actx.currentTime;
@@ -44,6 +58,22 @@ export function playNote(noteKey, waveform, ADSR, filter, volume, actx, noteWidt
   gainNode.gain.linearRampToValueAtTime(sustain, now + attack + decay);
   gainNode.gain.linearRampToValueAtTime(0, now + attack + decay + release);
 
-  osc.start();
-  osc.stop(now + attack + decay + release);
+  const stopTime = now + attack + decay + release;
+
+osc1.start();
+osc2.start();
+osc3.start();
+
+osc1.stop(stopTime);
+osc2.stop(stopTime);
+osc3.stop(stopTime);
+  
+}
+
+function createOscillators(actx, waveform, frequency, detune) {
+  const osc = actx.createOscillator();
+  osc.frequency.value = frequency;
+  osc.type = waveform;
+  osc.detune.value = detune;
+  return osc;
 }

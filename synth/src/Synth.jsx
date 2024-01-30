@@ -70,7 +70,7 @@ const Synth = React.forwardRef((props, ref) => {
       actx.resume();
     }
     
-    playNote(noteName, waveform, ADSR, filter, volume,  actx, noteWidth);
+    playNote(noteName, waveform, ADSR, frequency, q, volume,  actx, noteWidth);
   };
   return (
     <div>
