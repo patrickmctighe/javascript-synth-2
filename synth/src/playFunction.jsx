@@ -1,6 +1,6 @@
 // playFunction.jsx
 
-export function playNote(noteKey, waveform, ADSR, frequency,q, volume, actx, noteWidth, unisonCount) {
+export function playNote(noteKey, waveform, ADSR, frequency,q, volume, actx, noteWidth, time, feedback, maxDuration) {
   const notes = {
     "c-4": 261.626,
     "d-4": 293.665,
@@ -37,6 +37,18 @@ export function playNote(noteKey, waveform, ADSR, frequency,q, volume, actx, not
 
   const gainNode = actx.createGain();
   gainNode.gain.value = volume;
+
+  const delayNode = actx.createDelay();
+  delayNode.delayTime.value = time * maxDuration;
+  delayNode.connect(actx.destination);
+  delayNode.connect(gainNode);
+  gainNode.connect(delayNode);
+  delayNode.connect(gainNode);
+  gainNode.connect(delayNode);
+  osc1.connect(delayNode);
+  osc2.connect(delayNode);
+  osc3.connect(delayNode);
+
 
   const maxFilterFrequency = actx.sampleRate / 2;
   const filter = actx.createBiquadFilter();

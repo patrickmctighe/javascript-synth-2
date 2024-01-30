@@ -27,7 +27,7 @@ const Synth = React.forwardRef((props, ref) => {
   const [time, setTime] = useState(0.5);
   const [feedback, setFeedback] = useState(0.5);
   const [maxDuration, setMaxDuration] = useState(2);
-  const [echo, setEcho] = useState(0.5);
+ 
 
   const handleVolumeChange = (event) => setVolume(parseFloat(event.target.value));
   const handleWaveformChange = (newValue) => {
@@ -70,7 +70,7 @@ const Synth = React.forwardRef((props, ref) => {
       actx.resume();
     }
     
-    playNote(noteName, waveform, ADSR, frequency, q, volume,  actx, noteWidth);
+    playNote(noteName, waveform, ADSR, frequency, q, volume,  actx, noteWidth, time, feedback, maxDuration);
   };
   return (
     <div>
