@@ -14,15 +14,19 @@ export function playNote(noteKey, waveform, ADSR, frequency,q, volume, actx, not
     "d#4": 311.127,
     "f#4": 369.994,
     "g#4": 415.305,
-    "a#4": 466.164
+    "a#4": 466.164,
+    "silent": "silent"
   };
 
   const noteFrequency = notes[noteKey];
+  
   if (noteFrequency === undefined) {
     console.log(`Note ${noteKey} not found`);
     return;
   }
-
+  if (noteFrequency === "silent") {
+    return; 
+  }
   const osc1 = actx.createOscillator();
   osc1.frequency.value = noteFrequency;
   osc1.type = waveform;
@@ -40,14 +44,10 @@ export function playNote(noteKey, waveform, ADSR, frequency,q, volume, actx, not
 
   const delayNode = actx.createDelay();
   delayNode.delayTime.value = time * maxDuration;
-  delayNode.connect(actx.destination);
-  delayNode.connect(gainNode);
-  gainNode.connect(delayNode);
-  delayNode.connect(gainNode);
-  gainNode.connect(delayNode);
-  osc1.connect(delayNode);
-  osc2.connect(delayNode);
-  osc3.connect(delayNode);
+
+  
+ 
+  
 
 
   const maxFilterFrequency = actx.sampleRate / 2;
@@ -55,26 +55,50 @@ export function playNote(noteKey, waveform, ADSR, frequency,q, volume, actx, not
   filter.type = "lowpass";
   filter.frequency.value = frequency * maxFilterFrequency; // scale frequency
   filter.Q.value = q * 30; // scale Q
+  console.log('filter.frequency.value:', filter.frequency.value);
+  console.log('filter.Q.value:', filter.Q.value);
 
   
-  osc1.connect(filter);
-  osc2.connect(filter);
-  osc3.connect(filter);
-  filter.connect(gainNode);
-  gainNode.connect(actx.destination);
 
-  const now = actx.currentTime;
+
+
+ 
   const { attack, decay, sustain, release } = ADSR;
-  gainNode.gain.setValueAtTime(0, now);
-  gainNode.gain.linearRampToValueAtTime(volume, now + attack);
-  gainNode.gain.linearRampToValueAtTime(sustain, now + attack + decay);
-  gainNode.gain.linearRampToValueAtTime(0, now + attack + decay + release);
+  const STAGE_MAX_TIME = 2;
+   const now = actx.currentTime;
+   const atkDuration = attack * STAGE_MAX_TIME;
+   const atkEndTime = now + atkDuration;
+    const decDuration = decay * STAGE_MAX_TIME;
 
-  const stopTime = now + attack + decay + release;
+gainNode.gain.setValueAtTime(0, actx.currentTime);
+gainNode.gain.linearRampToValueAtTime(volume, atkEndTime);
+gainNode.gain.linearRampToValueAtTime(sustain, atkEndTime + decDuration);
 
-osc1.start();
-osc2.start();
-osc3.start();
+
+// Connect the oscillators to the filter
+osc1.connect(filter);
+osc2.connect(filter);
+osc3.connect(filter);
+
+// Connect the filter to the gain node
+filter.connect(gainNode);
+
+// Connect the gain node to the delay node
+gainNode.connect(delayNode);
+
+// Connect the delay node to the destination
+delayNode.connect(actx.destination);
+
+  const stopTime = now + attack + decay + release+ maxDuration;
+
+osc1.start(now);
+osc2.start(now);
+osc3.start(now);
+
+console.log('osc1.frequency.value:', osc1.frequency.value);
+console.log('osc2.frequency.value:', osc2.frequency.value);
+console.log('osc3.frequency.value:', osc3.frequency.value);
+
 
 osc1.stop(stopTime);
 osc2.stop(stopTime);
@@ -82,10 +106,3 @@ osc3.stop(stopTime);
   
 }
 
-function createOscillators(actx, waveform, frequency, detune) {
-  const osc = actx.createOscillator();
-  osc.frequency.value = frequency;
-  osc.type = waveform;
-  osc.detune.value = detune;
-  return osc;
-}

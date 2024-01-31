@@ -10,7 +10,7 @@ function Unison({ noteWidth = 0, handleWidthChange }) {
         <input
           type="range"
           min="0"
-          max="1"
+          max="50"
           step="0.01"
           value={noteWidth}
           onChange={handleWidthChange}

@@ -6,6 +6,7 @@ import ADSR from './effects/ADSR';
 import FrequencyQ from './effects/FrequencyQ';
 import Echo from './effects/Echo';
 import Keyboard from './effects/Keyboard';
+import Sequencer from './Sequencer';
 import {playNote} from './playFunction.jsx'
 
 
@@ -47,8 +48,8 @@ const Synth = React.forwardRef((props, ref) => {
   useEffect(() => {
     const context = new (AudioContext || webkitAudioContext)();
     setActx(context);
+    console.log('actx after set:', actx); 
     return () => {
-      // Clean up the AudioContext when the component unmounts
       if (context.state !== 'closed') {
         context.close().catch((error) => console.error('Error closing AudioContext:', error));
       }
@@ -66,11 +67,15 @@ const Synth = React.forwardRef((props, ref) => {
     console.log('ADSR:', ADSR);
     console.log('Filter:', filter);
   
-    if (actx.state === 'suspended') {
-      actx.resume();
+    if (actx) {
+      if (actx.state === 'suspended') {
+        actx.resume();
+      }
+      console.log('actx in handlePlayNote:', actx);
+      playNote(noteName, waveform, ADSR, frequency, q, volume,  actx, noteWidth, time, feedback, maxDuration);
+    } else {
+      console.log('AudioContext not initialized yet');
     }
-    
-    playNote(noteName, waveform, ADSR, frequency, q, volume,  actx, noteWidth, time, feedback, maxDuration);
   };
   return (
     <div>
@@ -81,7 +86,23 @@ const Synth = React.forwardRef((props, ref) => {
     <FrequencyQ frequency={frequency} q={q} handleFrequencyChange={handleFrequencyChange} handleQChange={handleQChange} />
     <Echo echo={{time, feedback, maxDuration}} handleTimeChange={handleTimeChange} handleFeedbackChange={handleFeedbackChange} handleMaxDurationChange={handleMaxDurationChange} />     
     <Keyboard playNote={handlePlayNote} volume={volume}/>
-    
+    <Sequencer 
+  playNote={handlePlayNote} 
+  actx={actx} 
+  volume={volume}
+  waveform={waveform}
+  noteWidth={noteWidth}
+  attack={attack}
+  decay={decay}
+  sustain={sustain}
+  release={release}
+  frequency={frequency}
+  q={q}
+  time={time}
+  feedback={feedback}
+  maxDuration={maxDuration}
+  ADSR={{ attack, decay, sustain, release }}
+/>
   </div>
   );
 });

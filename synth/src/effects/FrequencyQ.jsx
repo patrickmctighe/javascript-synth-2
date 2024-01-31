@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function FrequencyQ({ frequency = 0, q = 0, handleFrequencyChange, handleQChange }) {
+function FrequencyQ({ frequency = 10, q = 0.0001, handleFrequencyChange, handleQChange }) {
   return (
     <div>
       <div className="lowpass">
@@ -9,7 +9,7 @@ function FrequencyQ({ frequency = 0, q = 0, handleFrequencyChange, handleQChange
           <p>FRQ: <span className="frq-value">{frequency}</span></p>
           <input
             type="range"
-            min="0"
+            min="0.01"
             max="1"
             step="0.01"
             value={frequency}

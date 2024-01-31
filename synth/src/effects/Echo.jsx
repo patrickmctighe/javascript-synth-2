@@ -42,7 +42,7 @@ function Echo({ echo = { feedback: 0.5, time: 0.5, maxDuration: 1 }, handleTimeC
           <input
             type="range"
             min="0"
-            max="5"
+            max="1"
             step="0.01"
             value={maxDuration}
             onChange={handleMaxDurationChange}
