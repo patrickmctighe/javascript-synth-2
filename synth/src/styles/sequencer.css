@@ -1,14 +1,37 @@
 .seqSteps{
-    
+       display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    width: 100%;
+    height: 100%;
+    row-gap: 1em;
+    column-gap: 1em;
 }
 
 .indvStep{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
+height:7em;
+width:5em;
+background-color: grey;
+border: 1px solid black;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+gap:2em;
+}
+
+.lightOff{
+    height:2em;
+    width: 2em;
+    background-color: black;
+    border-radius: 45px;
+    border: 3px solid lightgray
+}
+
+.lightOn{
+    height:2em;
+    width: 2em;
+    background-color: red;
+    border-radius: 45px;
+    border: 3px solid lightgray
 }

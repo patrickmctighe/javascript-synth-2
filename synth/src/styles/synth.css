@@ -1,4 +1,13 @@
 .effectSliders{
     display:flex;
+
+}
+
+.synthBody{
+    display:flex;
+    gap:1em;
+}
+
+.keysSlidersButtons{
     
 }
