@@ -1,0 +1,74 @@
+.adsr{
+    background-color: lightsalmon;
+    display: flex;
+    width: 20em
+}
+
+
+
+.attack{
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:8em;
+    width:2.5em;
+    height:21em;
+    padding: 1em;
+}
+
+.attack-slider{
+   transform: rotate(-90deg);
+}
+
+
+.decay{
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:8em;
+    width:2.5em;
+    height:21em;
+    padding: 1em;
+}
+
+.decay-slider{
+   transform: rotate(-90deg);
+}
+
+
+.sustain{
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:8em;
+    width:2.5em;
+    height:21em;
+    padding: 1em;
+}
+
+.sustain-slider{
+   transform: rotate(-90deg);
+}
+
+
+.release{
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:8em;
+    width:2.5em;
+    height:21em;
+    padding: 1em;
+}
+
+.release-slider{
+   transform: rotate(-90deg);
+}

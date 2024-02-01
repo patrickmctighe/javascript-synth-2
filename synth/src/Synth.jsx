@@ -9,6 +9,7 @@ import Keyboard from './effects/Keyboard';
 import Sequencer from './Sequencer';
 import {playNote} from './playFunction.jsx'
 
+import './styles/synth.css';
 
 const Synth = React.forwardRef((props, ref) => {
 
@@ -79,12 +80,13 @@ const Synth = React.forwardRef((props, ref) => {
   };
   return (
     <div>
-    <Volume volume={volume} onVolumeChange={handleVolumeChange} />
+      <div className="effectSliders">    <Volume volume={volume} onVolumeChange={handleVolumeChange} />
     <Wave wave={waveform} onWaveChange={handleWaveformChange} />
     <Unison noteWidth={noteWidth} handleWidthChange={handleWidthChange} />
     <ADSR ADSR={{attack, decay, sustain, release}} handleAttackChange={handleAttackChange} handleDecayChange={handleDecayChange} handleSustainChange={handleSustainChange} handleReleaseChange={handleReleaseChange} />  
     <FrequencyQ frequency={frequency} q={q} handleFrequencyChange={handleFrequencyChange} handleQChange={handleQChange} />
     <Echo echo={{time, feedback, maxDuration}} handleTimeChange={handleTimeChange} handleFeedbackChange={handleFeedbackChange} handleMaxDurationChange={handleMaxDurationChange} />     
+</div>
     <Keyboard playNote={handlePlayNote} volume={volume}/>
     <Sequencer 
   playNote={handlePlayNote} 

@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import "../styles/frequencyQ.css";
+
 
 function FrequencyQ({ frequency = 10, q = 0.0001, handleFrequencyChange, handleQChange }) {
   return (
     <div>
       <div className="lowpass">
         <div className="frq">
-          <p>FRQ: <span className="frq-value">{frequency}</span></p>
+          
+          <span className="frq-value">{frequency}</span>
           <input
             type="range"
             min="0.01"
@@ -16,9 +19,11 @@ function FrequencyQ({ frequency = 10, q = 0.0001, handleFrequencyChange, handleQ
             onChange={handleFrequencyChange}
             className="frequency-slider"
           />
+          <p>FRQ</p>
         </div>
         <div className="Q">
-          <p>Q: <span className="q-value">{q}</span></p>
+         
+          <span className="q-value">{q}</span>
           <input
             type="range"
             min="0"
@@ -28,6 +33,7 @@ function FrequencyQ({ frequency = 10, q = 0.0001, handleFrequencyChange, handleQ
             onChange={handleQChange}
             className="q-slider"
           />
+           <p>Q</p>
         </div>
       </div>
     </div>

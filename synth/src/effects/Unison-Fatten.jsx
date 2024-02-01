@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import "../styles/unison-fatten.css";
 
 function Unison({ noteWidth = 0, handleWidthChange }) {
   console.log('Unison noteWidth:', noteWidth);
   return (
     <div>
       <div className="width">
-        <p>Width: <span className="width-value">{noteWidth}</span></p>
+        
+        <span className="width-value">{noteWidth}</span>
         <input
           type="range"
           min="0"
@@ -16,6 +18,7 @@ function Unison({ noteWidth = 0, handleWidthChange }) {
           onChange={handleWidthChange}
           className="width-slider"
         />
+        <p>U / F</p>
       </div>
     </div>
   );

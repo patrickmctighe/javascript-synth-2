@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { playNote } from './playFunction';
+import './styles/sequencer.css';
 
 const notes = ["c-4", "d-4", "e-4", "f-4", "g-4", "a-4", "b-4", "c-5", "c#4", "d#4", "f#4", "g#4", "a#4", "silent"];
 
@@ -51,13 +52,15 @@ function Sequencer({noteKey, waveform, ADSR, frequency, q, volume, actx, noteWid
 
   return (
     <div>
+      <div className="seqSteps">
       {sequence.map((note, index) => (
+        
         <select key={index} value={note} onChange={event => handleNoteChange(index, event.target.value)}>
           {notes.map(noteOption => (
             <option key={noteOption} value={noteOption}>{noteOption}</option>
           ))}
         </select>
-      ))}
+      ))}</div>
       <button onClick={() => setIsPlaying(!isPlaying)}>{isPlaying ? 'Stop' : 'Start'}</button>
       <button onClick={addNote}>Add Note</button> {/* New button to add a note */}
       <button onClick={removeNote}>Remove Note</button> {/* New button to remove a note */}

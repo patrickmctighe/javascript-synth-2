@@ -1,0 +1,38 @@
+.lowpass{
+    background-color: lightseagreen;
+    display:flex;
+    width:9em;
+}
+
+.frq{
+    background-color: lightseagreen;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:8em;
+    width:2.5em;
+    height:21em;
+    padding: 1em;
+}
+
+.frequency-slider{
+   transform: rotate(-90deg);
+}
+
+
+.Q{
+    background-color: lightseagreen;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:8em;
+    width:2.5em;
+    height:21em;
+    padding: 1em;
+}
+
+.q-slider{
+   transform: rotate(-90deg);
+}

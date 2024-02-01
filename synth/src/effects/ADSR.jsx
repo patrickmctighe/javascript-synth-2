@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import "../styles/adsr.css";
 
 function ADSR({ ADSR = { attack: 0, decay: 0, sustain: 0, release: 0 }, handleAttackChange, handleDecayChange, handleSustainChange, handleReleaseChange }) {
   const { attack, decay, sustain, release } = ADSR;
@@ -8,9 +9,8 @@ function ADSR({ ADSR = { attack: 0, decay: 0, sustain: 0, release: 0 }, handleAt
     <div>
       <div className="adsr">
         <div className="attack">
-          <p>
-            Attack: <span className="attack-value">{attack}</span>
-          </p>
+        <span className="attack-value">{attack}</span>
+        
           <input
             type="range"
             min="0"
@@ -20,11 +20,13 @@ function ADSR({ ADSR = { attack: 0, decay: 0, sustain: 0, release: 0 }, handleAt
             onChange={handleAttackChange}
             className="attack-slider"
           />
+         <p>
+            ATK
+          </p>
         </div>
         <div className="decay">
-          <p>
-            Decay: <span className="decay-value">{decay}</span>
-          </p>
+          
+          <span className="decay-value">{decay}</span>
           <input
             type="range"
             min="0"
@@ -34,11 +36,13 @@ function ADSR({ ADSR = { attack: 0, decay: 0, sustain: 0, release: 0 }, handleAt
             onChange={handleDecayChange}
             className="decay-slider"
           />
+          <p>
+            DEC 
+          </p>
         </div>
         <div className="sustain">
-          <p>
-            Sustain: <span className="sustain-value">{sustain}</span>
-          </p>
+         
+          <span className="sustain-value">{sustain}</span>
           <input
             type="range"
             min="0"
@@ -48,11 +52,13 @@ function ADSR({ ADSR = { attack: 0, decay: 0, sustain: 0, release: 0 }, handleAt
             onChange={handleSustainChange}
             className="sustain-slider"
           />
+           <p>
+            SUS
+          </p>
         </div>
         <div className="release">
-          <p>
-            Release: <span className="release-value">{release}</span>
-          </p>
+         
+          <span className="release-value">{release}</span>
           <input
             type="range"
             min="0"
@@ -62,6 +68,9 @@ function ADSR({ ADSR = { attack: 0, decay: 0, sustain: 0, release: 0 }, handleAt
             onChange={handleReleaseChange}
             className="release-slider"
           />
+           <p>
+            REL
+          </p>
         </div>
       </div>
     </div>

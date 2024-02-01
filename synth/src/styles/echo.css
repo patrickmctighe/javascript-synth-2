@@ -1,0 +1,54 @@
+.echo{
+    background-color: lightgoldenrodyellow;
+    display:flex;
+    width:10em
+}
+
+.time{
+    background-color: lightgoldenrodyellow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:8em;
+    width:2.5em;
+    height:21em;
+    padding: 1em;
+}
+
+.time-slider{
+   transform: rotate(-90deg);
+}
+
+.feedback{
+    background-color: lightgoldenrodyellow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:8em;
+    width:2.5em;
+    height:21em;
+    padding: 1em;
+}
+
+.feedback-slider{
+   transform: rotate(-90deg);
+}
+
+
+.maxDuration{
+    background-color: lightgoldenrodyellow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:8em;
+    width:2.5em;
+    height:21em;
+    padding: 1em;
+}
+
+.maxDuration-slider{
+   transform: rotate(-90deg);
+}

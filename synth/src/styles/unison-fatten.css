@@ -1,0 +1,16 @@
+.width{
+    background-color: lightcoral;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:8em;
+    width:2.5em;
+    height:21em;
+    padding: 1em;
+    height:21em
+}
+
+.width-slider{
+   transform: rotate(-90deg);
+}

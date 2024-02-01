@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import "../styles/wave.css";
 
 function Wave({ wave, onWaveChange }) {
   const waveforms = ["sine", "square", "sawtooth", "triangle"];
@@ -9,9 +10,26 @@ function Wave({ wave, onWaveChange }) {
     onWaveChange(newWaveform);
   };
 
+  let sliderText = waveforms.indexOf(wave);
+
+  if (sliderText === 0) {
+    sliderText = "SIN";
+  }
+  else if (sliderText === 1) {
+    sliderText = "SQR";
+  }
+  else if (sliderText === 2) {
+    sliderText = "SAW";
+  }
+  else if (sliderText === 3) {
+    sliderText = "TRI";
+  }
+  
+  
   return (
     <div className="waves">
-      <p>Waveform: <span className="wave-value">{wave}</span></p>
+      
+      <span className="wave-value">{sliderText}</span>
       <input
         type="range"
         min="0"
@@ -20,6 +38,7 @@ function Wave({ wave, onWaveChange }) {
         onChange={handleWaveformChange}
         className="waveform-slider"
       />
+       <p>WAV </p>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import "../styles/echo.css";
 function Echo({ echo = { feedback: 0.5, time: 0.5, maxDuration: 1 }, handleTimeChange, handleFeedbackChange, handleMaxDurationChange }) {
   const { time, feedback, maxDuration } = echo;
 
@@ -8,9 +8,8 @@ function Echo({ echo = { feedback: 0.5, time: 0.5, maxDuration: 1 }, handleTimeC
     <div>
       <div className="echo">
         <div className="time">
-          <p>
-            Time: <span className="time-value">{time}</span>
-          </p>
+         
+           <span className="time-value">{time}</span>
           <input
             type="range"
             min="0"
@@ -20,11 +19,13 @@ function Echo({ echo = { feedback: 0.5, time: 0.5, maxDuration: 1 }, handleTimeC
             onChange={handleTimeChange}
             className="time-slider"
           />
+           <p>
+            T
+          </p>
         </div>
         <div className="feedback">
-          <p>
-            Feedback: <span className="feedback-value">{feedback}</span>
-          </p>
+        
+          <span className="feedback-value">{feedback}</span>
           <input
             type="range"
             min="0"
@@ -34,11 +35,13 @@ function Echo({ echo = { feedback: 0.5, time: 0.5, maxDuration: 1 }, handleTimeC
             onChange={handleFeedbackChange}
             className="feedback-slider"
           />
+            <p>
+            F
+          </p>
         </div>
         <div className="maxDuration">
-          <p>
-            Max Duration: <span className="maxDuration-value">{maxDuration}</span>
-          </p>
+         
+          <span className="maxDuration-value">{maxDuration}</span>
           <input
             type="range"
             min="0"
@@ -48,6 +51,9 @@ function Echo({ echo = { feedback: 0.5, time: 0.5, maxDuration: 1 }, handleTimeC
             onChange={handleMaxDurationChange}
             className="maxDuration-slider"
           />
+           <p>
+            M
+          </p>
         </div>
       </div>
     </div>

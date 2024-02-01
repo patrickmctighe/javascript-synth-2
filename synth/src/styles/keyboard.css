@@ -1,0 +1,10 @@
+.noteKey{
+    width: 4.85em;
+    height: 14em;
+    background-color: white;
+    border: 1px solid #fff;
+    display: inline-block;
+    margin: 0 2px;
+    cursor: pointer;
+    transition: all 0.3s;
+}

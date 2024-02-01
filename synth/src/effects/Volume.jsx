@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
+import "../styles/volume.css";
 
 function Volume({ volume, onVolumeChange }) {
   return (
     <div className="volume">
-      <p>Volume: <span className="volume-value">{volume}</span></p>
-      <input
+      
+      <span className="volume-value">{volume}</span>
+      <div className="volInput"> <input
         type="range"
         min="0"
         max="1"
@@ -12,7 +14,9 @@ function Volume({ volume, onVolumeChange }) {
         value={volume}
         onChange={onVolumeChange}
         className="volume-slider"
-      />
+      /></div>
+     
+      <p>VOL</p>
     </div>
   );
 }

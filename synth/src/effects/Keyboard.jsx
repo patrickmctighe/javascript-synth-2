@@ -1,6 +1,6 @@
 import React from 'react';
 import {useEffect, useRef} from 'react';
-
+import "../styles/keyboard.css";
 function Keyboard({ playNote}) {
 
    const keyNoteMap = {
