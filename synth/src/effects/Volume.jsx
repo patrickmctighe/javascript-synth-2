@@ -3,9 +3,10 @@ import "../styles/volume.css";
 
 function Volume({ volume, onVolumeChange }) {
   return (
+    <div className="volumeBox box">
     <div className="volume">
-      
-      <span className="volume-value">{volume}</span>
+      <div className="infoBox"> <span className="volume-value">{volume}</span></div>
+     
       <div className="volInput"> <input
         type="range"
         min="0"
@@ -15,8 +16,8 @@ function Volume({ volume, onVolumeChange }) {
         onChange={onVolumeChange}
         className="volume-slider"
       /></div>
-     
       <p>VOL</p>
+    </div>
     </div>
   );
 }

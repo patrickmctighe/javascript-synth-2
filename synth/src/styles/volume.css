@@ -1,11 +1,12 @@
+
 .volume{
-    background-color: pink;
+    background-color: rgba(211, 211, 211, 0.186);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap:8em;
-    width:2.5em;
+    gap:7.8em;
+    width:2em;
     height:21em;
     padding: 1em;
 }

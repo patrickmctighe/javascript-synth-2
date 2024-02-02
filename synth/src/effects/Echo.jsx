@@ -5,11 +5,11 @@ function Echo({ echo = { feedback: 0.5, time: 0.5, maxDuration: 1 }, handleTimeC
   const { time, feedback, maxDuration } = echo;
 
   return (
-    <div>
+    <div className='echoBox box'>
       <div className="echo">
-        <div className="time">
-         
-           <span className="time-value">{time}</span>
+        <div className="time indvBox">
+         <div className="infoBox">   <span className="time-value">{time}</span></div>
+        
           <input
             type="range"
             min="0"
@@ -23,9 +23,9 @@ function Echo({ echo = { feedback: 0.5, time: 0.5, maxDuration: 1 }, handleTimeC
             T
           </p>
         </div>
-        <div className="feedback">
-        
-          <span className="feedback-value">{feedback}</span>
+        <div className="feedback indvBox">
+        <div className="infoBox">         <span className="feedback-value">{feedback}</span></div>
+ 
           <input
             type="range"
             min="0"
@@ -39,9 +39,9 @@ function Echo({ echo = { feedback: 0.5, time: 0.5, maxDuration: 1 }, handleTimeC
             F
           </p>
         </div>
-        <div className="maxDuration">
+        <div className="maxDuration indvBox">
+         <div className="infoBox"> <span className="maxDuration-value">{maxDuration}</span></div>
          
-          <span className="maxDuration-value">{maxDuration}</span>
           <input
             type="range"
             min="0"

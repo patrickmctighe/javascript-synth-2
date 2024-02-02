@@ -1,10 +1,55 @@
 .noteKey{
     width: 4.85em;
     height: 14em;
-    background-color: white;
-    border: 1px solid #fff;
-    display: inline-block;
-    margin: 0 2px;
+    background-color: rgb(164, 154, 154);
+    border: 1px solid #e7e0e0;
+  
     cursor: pointer;
-    transition: all 0.3s;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.noteKey:hover{
+    width: 4.85em;
+    height: 14em;
+    background-color: rgb(113, 109, 109);
+    border: 1px solid #e7e0e0;
+  
+    cursor: pointer;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.noteKey:active{
+    width: 4.85em;
+    height: 14em;
+    background-color: rgb(97, 94, 94);
+    border: 1px solid #e7e0e0;
+  
+    cursor: pointer;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+
+.keyboard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:.2em;
+padding:.75em;
+padding-top: 1.5em;
+    background-color: rgb(219, 212, 212);
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.noteKeyActive {
+    width: 4.85em;
+    height: 14em;
+    background-color: rgb(97, 94, 94);
+    border: 1px solid #e7e0e0;
+    cursor: pointer;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
 }

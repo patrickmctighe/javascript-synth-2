@@ -6,10 +6,11 @@ function ADSR({ ADSR = { attack: 0, decay: 0, sustain: 0, release: 0 }, handleAt
   const { attack, decay, sustain, release } = ADSR;
 
   return (
-    <div>
+    <div className='adsrBox box'>
       <div className="adsr">
-        <div className="attack">
-        <span className="attack-value">{attack}</span>
+        <div className="attack indvBox">
+          <div className="infoBox">  <span className="attack-value">{attack}</span></div>
+      
         
           <input
             type="range"
@@ -24,9 +25,9 @@ function ADSR({ ADSR = { attack: 0, decay: 0, sustain: 0, release: 0 }, handleAt
             ATK
           </p>
         </div>
-        <div className="decay">
-          
-          <span className="decay-value">{decay}</span>
+        <div className="decay indvBox">
+          <div className="infoBox"> <span className="decay-value">{decay}</span></div>
+         
           <input
             type="range"
             min="0"
@@ -40,9 +41,9 @@ function ADSR({ ADSR = { attack: 0, decay: 0, sustain: 0, release: 0 }, handleAt
             DEC 
           </p>
         </div>
-        <div className="sustain">
+        <div className="sustain indvBox">
+         <div className="infoBox"> <span className="sustain-value">{sustain}</span></div>
          
-          <span className="sustain-value">{sustain}</span>
           <input
             type="range"
             min="0"
@@ -56,9 +57,9 @@ function ADSR({ ADSR = { attack: 0, decay: 0, sustain: 0, release: 0 }, handleAt
             SUS
           </p>
         </div>
-        <div className="release">
+        <div className="release indvBox">
+         <div className="infoBox"> <span className="release-value">{release}</span></div>
          
-          <span className="release-value">{release}</span>
           <input
             type="range"
             min="0"

@@ -7,6 +7,8 @@ import FrequencyQ from "./effects/FrequencyQ";
 import Echo from "./effects/Echo";
 import Keyboard from "./effects/Keyboard";
 import Sequencer from "./Sequencer";
+import AudioVisualizer from "./AudioVisualizer.jsx";
+import AudioVisualizer2 from "./AudioVisualizer2.jsx";
 import { playNote } from "./playFunction.jsx";
 
 import "./styles/synth.css";
@@ -28,17 +30,7 @@ const Synth = React.forwardRef((props, ref) => {
   const [feedback, setFeedback] = useState(0.5);
   const [maxDuration, setMaxDuration] = useState(2);
 
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [sequence, setSequence] = useState(Array(16).fill("c-4"));
-  const [playbackSpeed, setPlaybackSpeed] = useState(500);
-
-  const addNote = () => {
-    setSequence((prevSequence) => [...prevSequence, "c-4"]);
-  };
-
-  const removeNote = () => {
-    setSequence((prevSequence) => prevSequence.slice(0, -1));
-  };
+  const [analyser, setAnalyser] = useState(null);
 
   const handleVolumeChange = (event) =>
     setVolume(parseFloat(event.target.value));
@@ -97,8 +89,8 @@ const Synth = React.forwardRef((props, ref) => {
       if (actx.state === "suspended") {
         actx.resume();
       }
-      console.log("actx in handlePlayNote:", actx);
-      playNote(
+
+      const source = playNote(
         noteName,
         waveform,
         ADSR,
@@ -111,82 +103,75 @@ const Synth = React.forwardRef((props, ref) => {
         feedback,
         maxDuration
       );
+
+      const analyser = actx.createAnalyser();
+      source.connect(analyser);
+      analyser.connect(actx.destination);
+      setAnalyser(analyser);
     } else {
       console.log("AudioContext not initialized yet");
     }
   };
   return (
     <div className="synthBody">
-      <div className="keysSlidersButtons">
-        <div className="effectSliders">
-          {" "}
-          <Volume volume={volume} onVolumeChange={handleVolumeChange} />
-          <Wave wave={waveform} onWaveChange={handleWaveformChange} />
-          <Unison noteWidth={noteWidth} handleWidthChange={handleWidthChange} />
-          <ADSR
-            ADSR={{ attack, decay, sustain, release }}
-            handleAttackChange={handleAttackChange}
-            handleDecayChange={handleDecayChange}
-            handleSustainChange={handleSustainChange}
-            handleReleaseChange={handleReleaseChange}
-          />
-          <FrequencyQ
-            frequency={frequency}
-            q={q}
-            handleFrequencyChange={handleFrequencyChange}
-            handleQChange={handleQChange}
-          />
-          <Echo
-            echo={{ time, feedback, maxDuration }}
-            handleTimeChange={handleTimeChange}
-            handleFeedbackChange={handleFeedbackChange}
-            handleMaxDurationChange={handleMaxDurationChange}
-          />
-        </div>
-        <Keyboard playNote={handlePlayNote} volume={volume} />
-        <div className="controlButtons">
-          <div className="startStop">
+      <div className="visualizer">
+        <AudioVisualizer analyser={analyser} />
+        <AudioVisualizer2 analyser={analyser} />
+      </div>
+      <div className="allButVis">
+        {" "}
+        <div className="keysSlidersButtons">
+          <div className="effectSliders">
             {" "}
-            <button onClick={addNote}>Add Note</button>
-            <button onClick={() => setIsPlaying(!isPlaying)}>
-              {isPlaying ? "Stop" : "Start"}
-            </button>
-            <button onClick={removeNote}>Remove Note</button>
-          </div>
-
-          <div className="speed">
-            <label>Playback Speed: </label>
-            <input
-              type="number"
-              value={playbackSpeed}
-              onChange={(event) => setPlaybackSpeed(Number(event.target.value))}
+            <Volume volume={volume} onVolumeChange={handleVolumeChange} />
+            <Wave wave={waveform} onWaveChange={handleWaveformChange} />
+            <Unison
+              noteWidth={noteWidth}
+              handleWidthChange={handleWidthChange}
+            />
+            <ADSR
+              ADSR={{ attack, decay, sustain, release }}
+              handleAttackChange={handleAttackChange}
+              handleDecayChange={handleDecayChange}
+              handleSustainChange={handleSustainChange}
+              handleReleaseChange={handleReleaseChange}
+            />
+            <FrequencyQ
+              frequency={frequency}
+              q={q}
+              handleFrequencyChange={handleFrequencyChange}
+              handleQChange={handleQChange}
+            />
+            <Echo
+              echo={{ time, feedback, maxDuration }}
+              handleTimeChange={handleTimeChange}
+              handleFeedbackChange={handleFeedbackChange}
+              handleMaxDurationChange={handleMaxDurationChange}
             />
           </div>
+          <Keyboard playNote={handlePlayNote} volume={volume} />
+        </div>
+        <div className="synthSeq">
+          {" "}
+          <Sequencer
+            playNote={handlePlayNote}
+            actx={actx}
+            volume={volume}
+            waveform={waveform}
+            noteWidth={noteWidth}
+            attack={attack}
+            decay={decay}
+            sustain={sustain}
+            release={release}
+            frequency={frequency}
+            q={q}
+            time={time}
+            feedback={feedback}
+            maxDuration={maxDuration}
+            ADSR={{ attack, decay, sustain, release }}
+          />
         </div>
       </div>
-      <Sequencer
-        playNote={handlePlayNote}
-        actx={actx}
-        volume={volume}
-        waveform={waveform}
-        noteWidth={noteWidth}
-        attack={attack}
-        decay={decay}
-        sustain={sustain}
-        release={release}
-        frequency={frequency}
-        q={q}
-        time={time}
-        feedback={feedback}
-        maxDuration={maxDuration}
-        ADSR={{ attack, decay, sustain, release }}
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
-        sequence={sequence}
-        setSequence={setSequence}
-        playbackSpeed={playbackSpeed}
-        setPlaybackSpeed={setPlaybackSpeed}
-      />
     </div>
   );
 });

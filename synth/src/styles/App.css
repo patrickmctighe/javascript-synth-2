@@ -27,7 +27,8 @@ input[type="range"] {
  /***** Chrome, Safari, Opera and Edge Chromium styles *****/
  /* slider track */
  input[type="range"]::-webkit-slider-runnable-track {
-    background-color: #053a5f;
+    background-color: #303436;
+    border: 1px solid black;
     border-radius: 0.5rem;
     height: 0.5rem;  
  }
@@ -39,16 +40,12 @@ input[type="range"] {
     margin-top: -12px; /* Centers thumb on the track */
  
     /*custom styles*/
-    background-color: #5cd5eb;
+    background-color: #6e8488;
     height: 2rem;
     width: 1rem;
  }
  
- input[type="range"]:focus::-webkit-slider-thumb {   
-   border: 1px solid #053a5f;
-   outline: 3px solid #053a5f;
-   outline-offset: 0.125rem; 
- }
+ 
  
  /******** Firefox styles ********/
  /* slider track */
@@ -74,3 +71,25 @@ input[type="range"] {
    outline: 3px solid #053a5f;
    outline-offset: 0.125rem; 
  }
+
+
+
+
+
+ .infoBox{
+    background-color: black;
+    color: chartreuse;
+    height: 1.9em;
+    width: 2.8em;
+    text-align: center;
+    border: 2px solid rgba(245, 245, 245, 0.207);
+    border-radius: .7em;
+ 
+ }
+
+ .box{
+   
+    background-color:rgba(211, 211, 211, 0.186);
+    border: 2px solid rgba(245, 245, 245, 0.207);
+    border-radius: .7em;
+}

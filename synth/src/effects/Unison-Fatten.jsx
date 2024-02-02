@@ -5,10 +5,10 @@ import "../styles/unison-fatten.css";
 function Unison({ noteWidth = 0, handleWidthChange }) {
   console.log('Unison noteWidth:', noteWidth);
   return (
-    <div>
+    <div className='widthBox box'>
       <div className="width">
+        <div className="infoBox"><span className="width-value">{noteWidth}</span></div>
         
-        <span className="width-value">{noteWidth}</span>
         <input
           type="range"
           min="0"

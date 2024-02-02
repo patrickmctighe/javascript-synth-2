@@ -1,9 +1,8 @@
-import React from 'react';
-import {useEffect, useRef} from 'react';
+import React, { useEffect, useState } from 'react';
 import "../styles/keyboard.css";
-function Keyboard({ playNote}) {
 
-   const keyNoteMap = {
+function Keyboard({ playNote }) {
+  const keyNoteMap = {
     'a': 'c-4',
     's': 'd-4',
     'd': 'e-4',
@@ -19,28 +18,21 @@ function Keyboard({ playNote}) {
     't': 'a#4'
   };
 
-  
-
-
-  const activeNotes = useRef({});
+  const [activeKeys, setActiveKeys] = useState({});
 
   useEffect(() => {
     const handleKeyDown = (event) => {
       const note = keyNoteMap[event.key];
       if (note) {
-        if (!activeNotes.current[note]) {
-          console.log(`Starting note: ${note}`);
-          activeNotes.current[note] = playNote(note);
-        }
+        setActiveKeys(prevKeys => ({ ...prevKeys, [note]: (prevKeys[note] || 0) + 1 }));
+        playNote(note);
       }
     };
 
     const handleKeyUp = (event) => {
       const note = keyNoteMap[event.key];
-      if (note && activeNotes.current[note]) {
-        console.log(`Stopping note: ${note}`);
-        activeNotes.current[note]();
-        delete activeNotes.current[note];
+      if (note) {
+        setActiveKeys(prevKeys => ({ ...prevKeys, [note]: prevKeys[note] > 0 ? prevKeys[note] - 1 : 0 }));
       }
     };
 
@@ -52,24 +44,23 @@ function Keyboard({ playNote}) {
       window.removeEventListener('keyup', handleKeyUp);
     };
   }, [playNote, keyNoteMap]);
-  return (
 
-    
+  return (
     <div className="keyboard">
-      <button className="noteKey" data-note="c-4" onClick={() => playNote('c-4')}>C-4</button>
-      <button className="noteKey" data-note="d-4" onClick={() => playNote('d-4')}>D-4</button>
-      <button className="noteKey" data-note="e-4" onClick={() => playNote('e-4')}>E-4</button>
-      <button className="noteKey" data-note="f-4" onClick={() => playNote('f-4')}>F-4</button>
-      <button className="noteKey" data-note="g-4" onClick={() => playNote('g-4')}>G-4</button>
-      <button className="noteKey" data-note="a-4" onClick={() => playNote('a-4')}>A-4</button>
-      <button className="noteKey" data-note="b-4" onClick={() => playNote('b-4')}>B-4</button>
-      <button className="noteKey" data-note="c-5" onClick={() => playNote('c-5')}>C-5</button>
-      <button className="noteKey" data-note="c#4" onClick={() => playNote('c#4')}>C#4</button>
-      <button className="noteKey" data-note="d#4" onClick={() => playNote('d#4')}>D#4</button>
-      <button className="noteKey" data-note="f#4" onClick={() => playNote('f#4')}>F#4</button>
-      <button className="noteKey" data-note="g#4" onClick={() => playNote('g#4')}>G#4</button>
-      <button className="noteKey" data-note="a#4" onClick={() => playNote('a#4')}>A#4</button>
-    </div>
+    {Object.keys(keyNoteMap).map(key => {
+      const note = keyNoteMap[key];
+      return (
+        <button
+          key={note}
+          className={`noteKey ${activeKeys[note] && activeKeys[note] > 0 ? 'noteKeyActive' : ''}`}
+          data-note={note}
+          onClick={() => playNote(note)}
+        >
+          {note.toUpperCase()}
+        </button>
+      );
+    })}
+  </div>
   );
 }
 

@@ -27,9 +27,10 @@ function Wave({ wave, onWaveChange }) {
   
   
   return (
+    <div className="waveBox box">
     <div className="waves">
-      
-      <span className="wave-value">{sliderText}</span>
+      <div className="infoBox"> <span className="wave-value">{sliderText}</span></div>
+     
       <input
         type="range"
         min="0"
@@ -39,6 +40,7 @@ function Wave({ wave, onWaveChange }) {
         className="waveform-slider"
       />
        <p>WAV </p>
+    </div>
     </div>
   );
 }

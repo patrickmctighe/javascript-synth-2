@@ -1,0 +1,15 @@
+.canvas{
+  
+    width: 81em;
+    height: 15em;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    border: 2px solid rgba(245, 245, 245, 0.207);
+    background-color: black;
+}
+
+.audioCanvas{
+    height: 100%;
+    width: 100%;
+}

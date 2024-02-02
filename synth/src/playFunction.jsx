@@ -104,5 +104,6 @@ osc1.stop(stopTime);
 osc2.stop(stopTime);
 osc3.stop(stopTime);
   
+return delayNode
 }
 

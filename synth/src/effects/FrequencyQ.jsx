@@ -5,11 +5,11 @@ import "../styles/frequencyQ.css";
 
 function FrequencyQ({ frequency = 10, q = 0.0001, handleFrequencyChange, handleQChange }) {
   return (
-    <div>
+    <div className='freqQBox box'>
       <div className="lowpass">
-        <div className="frq">
-          
-          <span className="frq-value">{frequency}</span>
+        <div className="frq indvBox">
+          <div className="infoBox"> <span className="frq-value">{frequency}</span></div>
+         
           <input
             type="range"
             min="0.01"
@@ -21,9 +21,10 @@ function FrequencyQ({ frequency = 10, q = 0.0001, handleFrequencyChange, handleQ
           />
           <p>FRQ</p>
         </div>
-        <div className="Q">
-         
-          <span className="q-value">{q}</span>
+        <div className="Q indvBox">
+         <div className="infoBox">
+          <span className="q-value ">{q}</span></div>
+
           <input
             type="range"
             min="0"
