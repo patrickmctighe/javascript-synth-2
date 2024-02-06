@@ -24,7 +24,7 @@ const Synth = () => {
   const [attack, setAttack] = useState(0.1);
   const [decay, setDecay] = useState(0.01);
   const [sustain, setSustain] = useState(0.01);
-  const [release, setRelease] = useState(0.1);
+  const [release, setRelease] = useState(0.28);
   const [frequency, setFrequency] = useState(0.5);
   const [q, setQ] = useState(0.5);
   const [time, setTime] = useState(0.1);
