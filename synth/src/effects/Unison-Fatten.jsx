@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import "../styles/unison-fatten.css";
 
 function Unison({ noteWidth = 0, handleWidthChange }) {
-  console.log('Unison noteWidth:', noteWidth);
+ 
   return (
     <div className='widthBox box'>
       <div className="width">

@@ -1,3 +1,11 @@
+
+.seqBody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:1em;
+}
 .seqSteps{
        display:grid;
     grid-template-columns: repeat(4, 1fr);
@@ -34,4 +42,9 @@ gap:2em;
     background-color: red;
     border-radius: 45px;
     border: 3px solid lightgray
+}
+
+.startStopBtn{
+    height: 3em;;
+    width: 100%;
 }

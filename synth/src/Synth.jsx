@@ -58,7 +58,7 @@ const Synth = React.forwardRef((props, ref) => {
   useEffect(() => {
     const context = new (AudioContext || webkitAudioContext)();
     setActx(context);
-    console.log("actx after set:", actx);
+   
     return () => {
       if (context.state !== "closed") {
         context
@@ -70,9 +70,7 @@ const Synth = React.forwardRef((props, ref) => {
     };
   }, []);
 
-  useEffect(() => {
-    console.log(`Volume changed to ${volume}`);
-  }, [volume]);
+
   const handlePlayNote = (noteName) => {
     event.stopPropagation();
     const filter = {
@@ -82,8 +80,7 @@ const Synth = React.forwardRef((props, ref) => {
     };
     const ADSR = { attack, decay, sustain, release };
 
-    console.log("ADSR:", ADSR);
-    console.log("Filter:", filter);
+   
 
     if (actx) {
       if (actx.state === "suspended") {
@@ -109,12 +106,12 @@ const Synth = React.forwardRef((props, ref) => {
       analyser.connect(actx.destination);
       setAnalyser(analyser);
     } else {
-      console.log("AudioContext not initialized yet");
+      console.error("AudioContext not available");
     }
   };
   return (
     <div className="synthBody">
-      <div className="visualizer">
+      <div className="visualizers">
         <AudioVisualizer analyser={analyser} />
         <AudioVisualizer2 analyser={analyser} />
       </div>

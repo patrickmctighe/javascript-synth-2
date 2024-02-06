@@ -20,10 +20,7 @@ export function playNote(noteKey, waveform, ADSR, frequency,q, volume, actx, not
 
   const noteFrequency = notes[noteKey];
   
-  if (noteFrequency === undefined) {
-    console.log(`Note ${noteKey} not found`);
-    return;
-  }
+
   if (noteFrequency === "silent") {
     return; 
   }
@@ -55,11 +52,6 @@ export function playNote(noteKey, waveform, ADSR, frequency,q, volume, actx, not
   filter.type = "lowpass";
   filter.frequency.value = frequency * maxFilterFrequency; // scale frequency
   filter.Q.value = q * 30; // scale Q
-  console.log('filter.frequency.value:', filter.frequency.value);
-  console.log('filter.Q.value:', filter.Q.value);
-
-  
-
 
 
  
@@ -95,9 +87,7 @@ osc1.start(now);
 osc2.start(now);
 osc3.start(now);
 
-console.log('osc1.frequency.value:', osc1.frequency.value);
-console.log('osc2.frequency.value:', osc2.frequency.value);
-console.log('osc3.frequency.value:', osc3.frequency.value);
+
 
 
 osc1.stop(stopTime);
