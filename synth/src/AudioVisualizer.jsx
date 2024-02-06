@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import  { useEffect, useRef } from 'react';
 import "./styles/audioVisualizer.css";
-
+import PropTypes from 'prop-types';
 const AudioVisualizer = ({ analyser }) => {
   const canvasRef = useRef(null);
 
@@ -48,5 +48,10 @@ const AudioVisualizer = ({ analyser }) => {
     /></div>
   );
 };
-
+AudioVisualizer.propTypes = {
+  analyser: PropTypes.shape({
+    frequencyBinCount: PropTypes.number,
+    getByteFrequencyData: PropTypes.func,
+  }).isRequired,
+};
 export default AudioVisualizer;

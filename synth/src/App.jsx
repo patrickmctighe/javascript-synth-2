@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+
 import Synth from './Synth';
 import "./styles/App.css";
 function App() {

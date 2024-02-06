@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: center;
     gap:1em;
+    
 }
 .seqSteps{
        display:grid;
@@ -17,7 +18,7 @@
 }
 
 .indvStep{
-height:7em;
+height:6.5em;
 width:5em;
 background-color: grey;
 border: 1px solid black;
@@ -25,7 +26,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 flex-direction: column;
-gap:2em;
+gap:1.75em;
 }
 
 .lightOff{
@@ -45,6 +46,57 @@ gap:2em;
 }
 
 .startStopBtn{
-    height: 3em;;
-    width: 100%;
+    height: 2em;;
+    width: 70%;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5em;
+}
+.update{
+    height: 2em;;
+    width: 30%;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5em;
+}
+
+.dropDown{
+    font-family: 'Bebas Neue', sans-serif;
+    background-color: lightgray;
+    font-size: 1em;
+}
+
+.startStopSpeed{
+    display: flex;
+    gap:1em;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.speed{
+    display: flex;
+    gap:.5em;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.speedDisplay{
+    background-color: black;
+    color: chartreuse;
+    height: 1.2em;
+    width: 2.5em;
+    text-align: center;
+    border: 2px solid rgba(245, 245, 245, 0.207);
+    border-radius: .7em;
+
+}
+
+.startAndUpdate{
+    display: flex;
+    gap:1em;
+    align-items: center;
+    justify-content: center;
+    width:100%
+
 }

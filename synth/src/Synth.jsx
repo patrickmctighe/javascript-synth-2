@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import Volume from "./effects/Volume";
 import Wave from "./effects/Wave";
 import Unison from "./effects/Unison-Fatten";
@@ -13,24 +13,26 @@ import { playNote } from "./playFunction.jsx";
 
 import "./styles/synth.css";
 
-const Synth = React.forwardRef((props, ref) => {
+
+const Synth = () => {
   const [actx, setActx] = useState(null);
 
-  const [volume, setVolume] = useState(1);
+  const [volume, setVolume] = useState(0.5);
   const [waveform, setWaveform] = useState("sine");
-  const [noteWidth, setNoteWidth] = useState(0);
+  const [noteWidth, setNoteWidth] = useState(3.5);
 
-  const [attack, setAttack] = useState(0.5);
-  const [decay, setDecay] = useState(0.5);
-  const [sustain, setSustain] = useState(0.5);
-  const [release, setRelease] = useState(0.5);
+  const [attack, setAttack] = useState(0.1);
+  const [decay, setDecay] = useState(0.01);
+  const [sustain, setSustain] = useState(0.01);
+  const [release, setRelease] = useState(0.1);
   const [frequency, setFrequency] = useState(0.5);
   const [q, setQ] = useState(0.5);
-  const [time, setTime] = useState(0.5);
-  const [feedback, setFeedback] = useState(0.5);
-  const [maxDuration, setMaxDuration] = useState(2);
+  const [time, setTime] = useState(0.1);
+  const [feedback, setFeedback] = useState(0.1);
+  const [maxDuration, setMaxDuration] = useState(.2);
 
   const [analyser, setAnalyser] = useState(null);
+  const[sequencerAnalyser, setSequencerAnalyser] = useState(null)
 
   const handleVolumeChange = (event) =>
     setVolume(parseFloat(event.target.value));
@@ -56,7 +58,7 @@ const Synth = React.forwardRef((props, ref) => {
     setMaxDuration(parseFloat(event.target.value));
 
   useEffect(() => {
-    const context = new (AudioContext || webkitAudioContext)();
+    const context = new (AudioContext || window.webkitAudioContext)();
     setActx(context);
    
     return () => {
@@ -71,22 +73,16 @@ const Synth = React.forwardRef((props, ref) => {
   }, []);
 
 
-  const handlePlayNote = (noteName) => {
+  const handlePlayNoteKeyboard = (noteName) => {
     event.stopPropagation();
-    const filter = {
-      type: "lowpass",
-      frequency: parseFloat(frequency),
-      Q: parseFloat(q),
-    };
+  
     const ADSR = { attack, decay, sustain, release };
-
-   
-
+  
     if (actx) {
       if (actx.state === "suspended") {
         actx.resume();
       }
-
+  
       const source = playNote(
         noteName,
         waveform,
@@ -100,7 +96,7 @@ const Synth = React.forwardRef((props, ref) => {
         feedback,
         maxDuration
       );
-
+      
       const analyser = actx.createAnalyser();
       source.connect(analyser);
       analyser.connect(actx.destination);
@@ -109,11 +105,14 @@ const Synth = React.forwardRef((props, ref) => {
       console.error("AudioContext not available");
     }
   };
+
+  
+
   return (
     <div className="synthBody">
       <div className="visualizers">
-        <AudioVisualizer analyser={analyser} />
-        <AudioVisualizer2 analyser={analyser} />
+        <AudioVisualizer analyser={analyser|| undefined} />
+        <AudioVisualizer2 sequencerAnalyser={sequencerAnalyser|| undefined} />
       </div>
       <div className="allButVis">
         {" "}
@@ -146,13 +145,13 @@ const Synth = React.forwardRef((props, ref) => {
               handleMaxDurationChange={handleMaxDurationChange}
             />
           </div>
-          <Keyboard playNote={handlePlayNote} volume={volume} />
+          <Keyboard  playNote={handlePlayNoteKeyboard} volume={volume} />
         </div>
         <div className="synthSeq">
           {" "}
           <Sequencer
-            playNote={handlePlayNote}
-            actx={actx}
+           
+            actx={actx||undefined}
             volume={volume}
             waveform={waveform}
             noteWidth={noteWidth}
@@ -166,12 +165,13 @@ const Synth = React.forwardRef((props, ref) => {
             feedback={feedback}
             maxDuration={maxDuration}
             ADSR={{ attack, decay, sustain, release }}
+           setSequencerAnalyser={setSequencerAnalyser}
           />
         </div>
       </div>
     </div>
   );
-});
+};
 
 Synth.displayName = "Synth";
 export default Synth;

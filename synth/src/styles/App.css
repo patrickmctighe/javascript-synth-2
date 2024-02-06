@@ -3,29 +3,27 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Bebas Neue', sans-serif;
 }
 
-*{
-    
-}
 
-/********** Range Input Styles **********/
-/*Range Reset*/
+
+
 input[type="range"] {
     -webkit-appearance: none;
      appearance: none;
      background: transparent;
      cursor: pointer;
      width: 15rem;
+       height: 2rem;
  }
  
- /* Removes default focus */
+
  input[type="range"]:focus {
    outline: none;
  }
  
- /***** Chrome, Safari, Opera and Edge Chromium styles *****/
- /* slider track */
+
  input[type="range"]::-webkit-slider-runnable-track {
     background-color: #303436;
     border: 1px solid black;
@@ -33,34 +31,32 @@ input[type="range"] {
     height: 0.5rem;  
  }
  
- /* slider thumb */
+
  input[type="range"]::-webkit-slider-thumb {
-   -webkit-appearance: none; /* Override default look */
+   -webkit-appearance: none;
     appearance: none;
-    margin-top: -12px; /* Centers thumb on the track */
+    margin-top: -13px; 
  
-    /*custom styles*/
+  
     background-color: #6e8488;
     height: 2rem;
     width: 1rem;
  }
  
  
- 
- /******** Firefox styles ********/
- /* slider track */
+
  input[type="range"]::-moz-range-track {
     background-color: #053a5f;
     border-radius: 0.5rem;
     height: 0.5rem;
  }
  
- /* slider thumb */
+
  input[type="range"]::-moz-range-thumb {
-    border: none; /*Removes extra border that FF applies*/
-    border-radius: 0; /*Removes default border-radius that FF applies*/
+    border: none; 
+    border-radius: 0; 
  
-    /*custom styles*/
+    
     background-color: #5cd5eb;
     height: 2rem;
     width: 1rem;
