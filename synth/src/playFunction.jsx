@@ -1,20 +1,24 @@
+
+
+const notes = {
+  "c-4": 261.626,
+  "d-4": 293.665,
+  "e-4": 329.628,
+  "f-4": 349.228,
+  "g-4": 391.995,
+  "a-4": 440.000,
+  "b-4": 493.883,
+  "c-5": 523.251,
+  "c#4": 277.183,
+  "d#4": 311.127,
+  "f#4": 369.994,
+  "g#4": 415.305,
+  "a#4": 466.164,
+  "silent": "silent"
+};
+
 export function playNote(noteKey, waveform, ADSR, frequency, q, volume, actx, noteWidth, time, feedback, maxDuration) {
-  const notes = {
-    "c-4": 261.626,
-    "d-4": 293.665,
-    "e-4": 329.628,
-    "f-4": 349.228,
-    "g-4": 391.995,
-    "a-4": 440.000,
-    "b-4": 493.883,
-    "c-5": 523.251,
-    "c#4": 277.183,
-    "d#4": 311.127,
-    "f#4": 369.994,
-    "g#4": 415.305,
-    "a#4": 466.164,
-    "silent": "silent"
-  };
+
 
   const noteFrequency = notes[noteKey];
 

@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import  { useState, useEffect, useCallback } from "react";
 import Volume from "./effects/Volume";
 import Wave from "./effects/Wave";
 import Unison from "./effects/Unison-Fatten";
@@ -34,28 +34,53 @@ const Synth = () => {
   const [analyser, setAnalyser] = useState(null);
   const[sequencerAnalyser, setSequencerAnalyser] = useState(null)
 
-  const handleVolumeChange = (event) =>
+  const handleVolumeChange = useCallback((event) => {
     setVolume(parseFloat(event.target.value));
-  const handleWaveformChange = (newValue) => {
+  }, []);
+  
+  const handleWaveformChange = useCallback((newValue) => {
     setWaveform(newValue);
-  };
-  const handleWidthChange = (event) =>
+  }, []);
+  
+  const handleWidthChange = useCallback((event) => {
     setNoteWidth(parseFloat(event.target.value));
-  const handleAttackChange = (event) =>
+  }, []);
+  
+  const handleAttackChange = useCallback((event) => {
     setAttack(parseFloat(event.target.value));
-  const handleDecayChange = (event) => setDecay(parseFloat(event.target.value));
-  const handleSustainChange = (event) =>
+  }, []);
+  
+  const handleDecayChange = useCallback((event) => {
+    setDecay(parseFloat(event.target.value));
+  }, []);
+  
+  const handleSustainChange = useCallback((event) => {
     setSustain(parseFloat(event.target.value));
-  const handleReleaseChange = (event) =>
+  }, []);
+  
+  const handleReleaseChange = useCallback((event) => {
     setRelease(parseFloat(event.target.value));
-  const handleFrequencyChange = (event) =>
+  }, []);
+  
+  const handleFrequencyChange = useCallback((event) => {
     setFrequency(parseFloat(event.target.value));
-  const handleQChange = (event) => setQ(parseFloat(event.target.value));
-  const handleTimeChange = (event) => setTime(parseFloat(event.target.value));
-  const handleFeedbackChange = (event) =>
+  }, []);
+  
+  const handleQChange = useCallback((event) => {
+    setQ(parseFloat(event.target.value));
+  }, []);
+  
+  const handleTimeChange = useCallback((event) => {
+    setTime(parseFloat(event.target.value));
+  }, []);
+  
+  const handleFeedbackChange = useCallback((event) => {
     setFeedback(parseFloat(event.target.value));
-  const handleMaxDurationChange = (event) =>
+  }, []);
+  
+  const handleMaxDurationChange = useCallback((event) => {
     setMaxDuration(parseFloat(event.target.value));
+  }, []);
 
   useEffect(() => {
     const context = new (AudioContext || window.webkitAudioContext)();
