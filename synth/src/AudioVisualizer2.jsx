@@ -4,16 +4,24 @@ import PropTypes from 'prop-types';
 
 const AudioVisualizer2 = ({ sequencerAnalyser }) => {
   const canvasRef = useRef(null);
+  const dataArrayRef = useRef(null);
+  const animationFrameIdRef = useRef(null);
 
   useEffect(() => {
     if (!sequencerAnalyser) return;
 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    const dataArray = new Uint8Array(sequencerAnalyser.frequencyBinCount);
+
+    if (!dataArrayRef.current) {
+      dataArrayRef.current = new Uint8Array(sequencerAnalyser.frequencyBinCount);
+    }
+    const dataArray = dataArrayRef.current;
+
+    const sliceWidth = canvas.width * 1.0 / sequencerAnalyser.frequencyBinCount;
 
     const draw = () => {
-      requestAnimationFrame(draw);
+      animationFrameIdRef.current = requestAnimationFrame(draw);
 
       sequencerAnalyser.getByteTimeDomainData(dataArray);
 
@@ -24,7 +32,6 @@ const AudioVisualizer2 = ({ sequencerAnalyser }) => {
 
       ctx.beginPath();
 
-      const sliceWidth = canvas.width * 1.0 / sequencerAnalyser.frequencyBinCount;
       let x = 0;
 
       for(let i = 0; i < sequencerAnalyser.frequencyBinCount; i++) {
@@ -45,19 +52,21 @@ const AudioVisualizer2 = ({ sequencerAnalyser }) => {
     };
 
     draw();
+
+    return () => cancelAnimationFrame(animationFrameIdRef.current);
   }, [sequencerAnalyser]);
 
-return (
-<div className="canvas2">
-  <canvas
-    ref={canvasRef}
-    className="audioCanvas2"
-    id="audioCanvas2"
-    width={900} 
-    height={100} 
-  />
-</div>
-);
+  return (
+    <div className="canvas2">
+      <canvas
+        ref={canvasRef}
+        className="audioCanvas2"
+        id="audioCanvas2"
+        width={900} 
+        height={100} 
+      />
+    </div>
+  );
 };
 
 AudioVisualizer2.propTypes = {
