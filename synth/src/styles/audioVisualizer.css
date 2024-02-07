@@ -5,8 +5,9 @@
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    border: 2px solid rgba(245, 245, 245, 0.207);
-    background-color: black;
+    border: 5px inset 	#CD7F32;
+    outline: 1px solid #924d08;
+    background-color: #042054;
 }
 
 .audioCanvas{

@@ -171,7 +171,7 @@ function Sequencer({
           </div>
 
           <div className="speed">
-            <label> Speed: </label>
+            <label> SPEED </label>
             <span className="speedDisplay">{playbackSpeed}</span>
             <input
               type="range"

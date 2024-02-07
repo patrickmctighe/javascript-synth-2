@@ -137,7 +137,9 @@ const Synth = () => {
     <div className="synthBody">
       <div className="visualizers">
         <AudioVisualizer analyser={analyser|| undefined} />
+        <div className="visualizer2AndLogo">    <img src="/synthLogo4.png" alt="logo" className="logo" />
         <AudioVisualizer2 sequencerAnalyser={sequencerAnalyser|| undefined} />
+</div>
       </div>
       <div className="allButVis">
         {" "}

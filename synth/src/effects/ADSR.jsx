@@ -40,7 +40,7 @@ function ADSR({
             />
           </div>
 
-          <p>ATK</p>
+          <p>A T K</p>
         </div>
         <div className="decay indvBox">
           <div className="infoBox">
@@ -62,7 +62,7 @@ function ADSR({
             />
           </div>
 
-          <p>DEC</p>
+          <p>D E C</p>
         </div>
         <div className="sustain indvBox">
           <div className="infoBox">
@@ -83,7 +83,7 @@ function ADSR({
             />
           </div>
 
-          <p>SUS</p>
+          <p>S U S</p>
         </div>
         <div className="release indvBox">
           <div className="infoBox">
@@ -103,7 +103,7 @@ function ADSR({
             />
           </div>
 
-          <p>REL</p>
+          <p>R E L</p>
         </div>
       </div>
     </div>

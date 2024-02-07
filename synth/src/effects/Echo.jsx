@@ -37,7 +37,7 @@ function Echo({
             />
           </div>
 
-          <p>T</p>
+          <p>T M</p>
         </div>
         <div className="feedback indvBox">
           <div className="infoBox">
@@ -57,7 +57,7 @@ function Echo({
             />
           </div>
 
-          <p>F</p>
+          <p>F B K</p>
         </div>
         <div className="maxDuration indvBox">
           <div className="infoBox">
@@ -77,7 +77,7 @@ function Echo({
             />
           </div>
 
-          <p>M</p>
+          <p>M A X</p>
         </div>
       </div>
     </div>

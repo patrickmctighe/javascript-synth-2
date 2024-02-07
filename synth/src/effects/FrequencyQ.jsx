@@ -35,7 +35,7 @@ function FrequencyQ({
             />
           </div>
 
-          <p>FRQ</p>
+          <p>F R Q</p>
         </div>
         <div className="Q indvBox">
           <div className="infoBox">

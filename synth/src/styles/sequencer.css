@@ -20,8 +20,8 @@
 .indvStep{
 height:6.5em;
 width:5em;
-background-color: grey;
-border: 1px solid black;
+background-color: rgba(165, 42, 42, 0.64);
+border: 3px outset #CD7F32;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -32,36 +32,52 @@ gap:1.75em;
 .lightOff{
     height:2em;
     width: 2em;
-    background-color: black;
+    background-color: rgb(47, 37, 37);
     border-radius: 45px;
-    border: 3px solid lightgray
+    border: 3px outset #CD7F32
 }
 
 .lightOn{
     height:2em;
     width: 2em;
-    background-color: red;
+    background-color: #d54d74;
     border-radius: 45px;
-    border: 3px solid lightgray
+    border: 3px outset #CD7F32;
+    box-shadow: 0 0 10px #c8627f, 0 0 20px #c46e86, 0 0 30px #D42054, 0 0 40px #D42054;
 }
-
 .startStopBtn{
     height: 2em;;
     width: 70%;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.5em;
+    background-color: #7e3e50;
+    border: 3px outset #8d561f;
 }
+
+.startStopBtn:active {
+    border-style: inset;
+}
+
 .update{
     height: 2em;;
     width: 30%;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.5em;
+    background-color: #7e3e50;
+    border: 3px outset #8d561f;
+}
+
+.update:active {
+    border-style: inset;
 }
 
 .dropDown{
     font-family: 'Bebas Neue', sans-serif;
     background-color: lightgray;
     font-size: 1em;
+    border-radius: .3em;
+    background-color: tan;
+    border: 2px inset #8d561f;
 }
 
 .startStopSpeed{
@@ -83,11 +99,12 @@ gap:1.75em;
 
 .speedDisplay{
     background-color: black;
-    color: chartreuse;
+    color: rgb(170, 140, 140);
     height: 1.2em;
     width: 2.5em;
     text-align: center;
-    border: 2px solid rgba(245, 245, 245, 0.207);
+    border: 3px inset #dc954d;
+    outline: 1px solid #924d08;
     border-radius: .7em;
 
 }

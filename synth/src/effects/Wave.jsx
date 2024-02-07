@@ -49,7 +49,7 @@ function Wave({ wave, onWaveChange }) {
         className="waveform-slider"
       /></div>
    
-       <p>WAV </p>
+       <p>W A V </p>
     </div>
     </div>
   );

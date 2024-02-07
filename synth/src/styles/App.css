@@ -1,10 +1,16 @@
 body{
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'Bebas Neue', sans-serif;
+   box-sizing: border-box;
+   margin: 0;
+   background-color: black;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   font-family: 'Bebas Neue', sans-serif;
+   width: 100%;
+   height: 100%;
 }
+
 
 
 
@@ -37,7 +43,8 @@ input[type="range"] {
     appearance: none;
     margin-top: -13px; 
  
-  
+    border: 1px solid #4a5d60;
+    outline: 3px outset #042b47;
     background-color: #6e8488;
     height: 2rem;
     width: 1rem;
@@ -64,7 +71,7 @@ input[type="range"] {
  
  input[type="range"]:focus::-moz-range-thumb {
    border: 1px solid #053a5f;
-   outline: 3px solid #053a5f;
+   outline: 3px outset #042b47;
    outline-offset: 0.125rem; 
  }
 
@@ -74,11 +81,12 @@ input[type="range"] {
 
  .infoBox{
     background-color: black;
-    color: chartreuse;
+    color: rgb(170, 140, 140);
     height: 1.9em;
     width: 2.8em;
     text-align: center;
-    border: 2px solid rgba(245, 245, 245, 0.207);
+    border: 3px inset #CD7F32;
+    outline: 1px solid #924d08;
     border-radius: .7em;
  
  }
@@ -86,6 +94,7 @@ input[type="range"] {
  .box{
    
     background-color:rgba(211, 211, 211, 0.186);
-    border: 2px solid rgba(245, 245, 245, 0.207);
+    border: 4px outset #CD7F32;
+    outline: 1px solid #924d08;
     border-radius: .7em;
 }

@@ -27,7 +27,7 @@ function Volume({ volume, onVolumeChange }) {
         onChange={onVolumeChange}
         className="volume-slider"
       /></div>
-      <p>VOL</p>
+      <p>V O L</p>
     </div>
     </div>
   );

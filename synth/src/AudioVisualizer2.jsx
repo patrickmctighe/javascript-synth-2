@@ -27,9 +27,12 @@ const AudioVisualizer2 = ({ sequencerAnalyser }) => {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = 'rgb(0, 255, 0)';
-
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#D42054'; // Set the color of the stroke
+      ctx.shadowColor = '#CD7F32'; // Set the color of the shadow
+      ctx.shadowBlur = 20; // Set the amount of blur
+      ctx.shadowOffsetX = 0; // Set the horizontal distance of the shadow
+      ctx.shadowOffsetY = 0; 
       ctx.beginPath();
 
       let x = 0;

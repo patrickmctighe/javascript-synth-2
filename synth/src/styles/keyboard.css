@@ -1,24 +1,26 @@
 .noteKey{
     width: 4.85em;
     height: 14em;
-    background-color: rgb(164, 154, 154);
-    border: 1px solid #e7e0e0;
+    background-color: hsl(57, 66%, 68%);
+    border: 4px outset hsl(57, 43%, 65%);;
     font-family: 'Bebas Neue', sans-serif;
     cursor: pointer;
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
-    
+    outline: 1px solid #c59361;
 }
 
 .noteName{
     font-size: 2.5em;
 }
 
+
+
 .noteKey:hover{
     width: 4.85em;
     height: 14em;
-    background-color: rgb(113, 109, 109);
-    border: 1px solid #e7e0e0;
+    background-color: #dcd88d;
+    border: 1px outset #e7e0e0;
   
     cursor: pointer;
     border-bottom-left-radius: 1em;
@@ -28,12 +30,13 @@
 .noteKey:active{
     width: 4.85em;
     height: 14em;
-    background-color: rgb(97, 94, 94);
-    border: 1px solid #e7e0e0;
+    background-color:#FFFDD0;
+    border: 4px inset #e7e0e0;
   
     cursor: pointer;
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
+    
 }
 
 
@@ -42,19 +45,22 @@
     align-items: center;
     justify-content: center;
     gap:.2em;
-padding:.75em;
-padding-top: 1.5em;
-    background-color: rgb(219, 212, 212);
+padding:.2em;
+padding-top: 1em;
+padding-bottom: .15em;
+    background-color: rgb(212, 175, 126);
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
- 
+    border: 3px outset #d4a9a9;
+    outline: 2px solid #9f7245;
 }
 
 .noteKeyActive {
     width: 4.85em;
     height: 14em;
-    background-color: rgb(97, 94, 94);
-    border: 1px solid #e7e0e0;
+    background-color:#edebbe;
+    border: 4px inset #e7e0e0;
+  
     cursor: pointer;
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;

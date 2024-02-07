@@ -7,6 +7,8 @@ const AudioVisualizer = ({ analyser }) => {
   const dataArrayRef = useRef(null);
   const animationFrameIdRef = useRef(null);
 
+  const colors = ['#fb3617', '#fc945c', '#f6c48e', '#1d8698'];
+
   useEffect(() => {
     if (!analyser) return;
 
@@ -32,7 +34,10 @@ const AudioVisualizer = ({ analyser }) => {
       for(let i = 0; i < reducedBinCount; i++) {
         const barHeight = dataArray[i] / 255 * canvas.height;
 
-        ctx.fillStyle = `rgba(${barHeight + 100}, ${50 + barHeight}, 150, 1)`;
+        // Map the barHeight to a color
+        const colorIndex = Math.floor(barHeight / canvas.height * colors.length);
+        ctx.fillStyle = colors[colorIndex];
+
         ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
 
         x += barWidth + 1;
